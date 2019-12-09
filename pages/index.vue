@@ -1,6 +1,6 @@
 <template>
-  <header>
-    <div class="text-box">
+  <div class="header" style="text-align:center">
+    <div class="text-box" style="text-align:center;">
       <h1>yamigu</h1>
       <div class="col-md-12"  style="text-align:center;">
       <tt>Chatting App for Managers ️</tt>
@@ -13,7 +13,7 @@
           src="~/static/images/kakao_login.png" @click="loginWithKakao()"/>
       </div>
     </div>
-  </header>
+  </div>
 </template>
 
 <script>
@@ -83,7 +83,7 @@ export default {
 };
 </script>
 <style>
-header {
+.header {
   min-height: 100vh;
   background-image: linear-gradient(
       to bottom,
@@ -93,13 +93,11 @@ header {
     url("/images/yamigu_main.jpg");
   background-position: center;
   background-size: cover;
-  position: relative;
+  text-align: center;
+  width: 100%;
 }
 .text-box {
-  position: absolute;
-  top: 50%;
-  left: 35%;
-  transform: translateY(-50%);
+  transform: translateY(50%);
   color: #fff;
 }
 .text-box h1 {

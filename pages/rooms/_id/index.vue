@@ -96,6 +96,10 @@ export default {
 }
 </script>
 <style>
+  .chat {
+  	  width:100%;
+  	  padding:0;
+  }
   .msg-header {
     position: fixed;
     top: 0;
@@ -108,6 +112,8 @@ export default {
   .chat-box {
     padding-top: 30px;
     padding-bottom: 50px;
+    padding-left: 13px;
+    padding-right: 13px;
     height: 100%;
     width: 100%;
   }
