@@ -1,0 +1,80 @@
+[
+    {
+        "id": 309,
+        "manager_info": {
+            "id": 5,
+            "uid": "1158459711",
+            "nickname": "abcdefabcdef"
+        },
+        "meeting_info": {
+            "type": "4:4 미팅",
+            "date": "2019-12-08"
+        },
+        "receiver_info": {
+            "id": 45,
+            "uid": "1227394568",
+            "nickname": "test1",
+            "age": 26,
+            "gender": "남"
+        },
+        "sender_info": {
+            "id": 5,
+            "uid": "1158459711",
+            "nickname": "abcdefabcdef",
+            "age": 25,
+            "gender": "남"
+        }
+    },
+    {
+        "id": 327,
+        "manager_info": {
+            "id": 5,
+            "uid": "1158459711",
+            "nickname": "abcdefabcdef"
+        },
+        "meeting_info": {
+            "type": "2:2 소개팅",
+            "date": "2019-12-06"
+        },
+        "receiver_info": {
+            "id": 49,
+            "uid": "1206194831",
+            "nickname": "띨낄띨낄",
+            "age": 26,
+            "gender": "남"
+        },
+        "sender_info": {
+            "id": 4,
+            "uid": "1150721062",
+            "nickname": "환철",
+            "age": 24,
+            "gender": "남"
+        }
+    },
+    {
+        "id": 328,
+        "manager_info": {
+            "id": 5,
+            "uid": "1158459711",
+            "nickname": "abcdefabcdef"
+        },
+        "meeting_info": {
+            "type": "3:3 미팅",
+            "date": "2019-12-08"
+        },
+        "receiver_info": {
+            "id": 4,
+            "uid": "1150721062",
+            "nickname": "환철",
+            "age": 24,
+            "gender": "남"
+        },
+        "sender_info": {
+            "id": 35,
+            "uid": "1210261553",
+            "nickname": "후레",
+            "age": 26,
+            "gender": "남"
+        }
+    }
+]
