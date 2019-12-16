@@ -35,6 +35,14 @@ export default {
     await $axios.$get('/manager/chatting_room_list/')
       .then( response => {
         resroomlist = response;
+        function compare(a, b) {
+          if (a.meeting_info.date < b.meeting_info.date)
+            return -1;
+          if (a.meeting_info.date > b.meeting_info.date)
+            return 1;
+          return 0;
+        }
+        resroomlist.sort(compare);
       }
     )
     return { 

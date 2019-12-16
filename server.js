@@ -65,7 +65,6 @@ app.post('/auth/logout', function (req, res) {
     })
   });
 })
-
 const isProd = process.env.NODE_ENV === 'production'
 let config = require('./nuxt.config.js')
 const nuxt = new Nuxt(config)

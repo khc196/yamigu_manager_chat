@@ -88,8 +88,13 @@ export default {
             idSender: this.$store.state.userInfo.uid,
             message: this.data.message,
             time: + new Date(),
-            userName: this.nickname
+            userName: "야미구 매니저 " + this.nickname
         });
+        // let toUser1 = firebase.database().ref('user/'+ this.user1Info.uid +'/receivedMessages').push();
+        // let toUser2 = firebase.database().ref('user/'+ this.user2Info.uid +'/receivedMessages').push();
+        // toUser1.set({
+        //   id = newData.key,
+        // })
         this.data.message = '';
     },
   }
@@ -106,7 +111,8 @@ export default {
     left: 0;
     width: 100%;
     z-index:100;
-    padding:10px;
+    padding-left:10px;
+    padding-right:10px;
     background:#FFF;
   }
   .chat-box {
