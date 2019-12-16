@@ -91,7 +91,7 @@ export default {
             idSender: this.$store.state.userInfo.uid,
             message: this.data.message,
             time: + new Date(),
-            userName: "야미구 매니저 " + this.nickname
+            userName: this.nickname
         });
         let toUser1 = firebase.database().ref('user/'+ this.user1Info.uid +'/receivedMessages/'+this.roomid).child(newData.key);
         let toUser2 = firebase.database().ref('user/'+ this.user2Info.uid +'/receivedMessages/'+this.roomid).child(newData.key);
