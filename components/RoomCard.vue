@@ -1,5 +1,5 @@
 <template>
-  <div v-if="room.manager_call" :id="room.id" class="room-card-called" v-on:click="enterRoom($event, room.id, room.meeting_info.date + ' || ' + room.meeting_info.type + ' || ' + room.receiver_info.nickname + '(' + room.receiver_info.age + ')' + ', ' + room.sender_info.nickname + '(' + room.sender_info.age + ')', true)">
+  <div v-if="room.manager_call" :id="room.id" class="room-card-called" v-on:click="enterRoom($event, room, room.id, room.meeting_info.date + ' || ' + room.meeting_info.type + ' || ' + room.receiver_info.nickname + '(' + room.receiver_info.age + ')' + ', ' + room.sender_info.nickname + '(' + room.sender_info.age + ')', true)">
   <div class="card-info-div">
       <div class="card-name-div">
         <tt class="card-name"> {{ room.receiver_info.nickname }}({{room.receiver_info.age}}세, {{room.receiver_info.gender}}, {{room.receiver_info.belong}}, {{room.receiver_info.department}})</tt>
@@ -15,7 +15,7 @@
       </span>
     </div>
   </div>
-  <div v-else :id="room.id" class="room-card" v-on:click="enterRoom($event, room.id, room.meeting_info.date + ' || ' + room.meeting_info.type + ' || ' + room.receiver_info.nickname + '(' + room.receiver_info.age + ')' + ', ' + room.sender_info.nickname + '(' + room.sender_info.age + ')', false)">
+  <div v-else :id="room.id" class="room-card" v-on:click="enterRoom($event, room, room.id, room.meeting_info.date + ' || ' + room.meeting_info.type + ' || ' + room.receiver_info.nickname + '(' + room.receiver_info.age + ')' + ', ' + room.sender_info.nickname + '(' + room.sender_info.age + ')', false)">
     <div class="card-info-div">
       <div class="card-name-div">
         <tt class="card-name"> {{ room.receiver_info.nickname }}({{room.receiver_info.age}}세, {{room.receiver_info.gender}}, {{room.receiver_info.belong}}, {{room.receiver_info.department}})</tt>
@@ -40,9 +40,10 @@ export default {
     },
     props: ["room"],
     methods : {
-        enterRoom: function(event, id, title, is_called) {
+        enterRoom: function(event, room_info, id, title, is_called) {
             this.$store.commit('SET_CURRENT_ROOM_TITLE', title);
-            this.$store.commit('SET_CURRENT_ROOM_ID', id)
+            this.$store.commit('SET_CURRENT_ROOM_ID', id);
+            this.$store.commit('SET_CURRENT_ROOM_INFO', room_info);
             //location.href = event.currentTarget.id;
             this.$router.push(event.currentTarget.id)
             if(is_called) {

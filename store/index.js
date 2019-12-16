@@ -5,6 +5,7 @@ export const state = () => ({
   userInfo : null,
   current_room_title: null,
   current_room_id: null,
+  current_room_info: null,
 })
 export const mutations = {
   SET_AUTH_TOKEN (state, token) {
@@ -18,6 +19,9 @@ export const mutations = {
   },
   SET_CURRENT_ROOM_ID (state, id) {
       state.current_room_id = id;
+  },
+  SET_CURRENT_ROOM_INFO (state, info) {
+      state.current_room_info = info;  
   },
   FIREBASE_SIGN_IN (state, token) {
     //state.firebase_token = token;

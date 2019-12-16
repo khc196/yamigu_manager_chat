@@ -63,6 +63,9 @@ export default {
       nickname(){ return this.$store.state.userInfo.nickname },
       uid(){return this.$store.state.userInfo.uid },
       roomid(){ return this.$store.state.current_room_id}, 
+      roominfo(){ return this.$store.state.current_room_info},
+      user1Info(){ return this.$store.state.current_room_info.receiver_info},
+      user2Info(){ return this.$store.state.current_room_info.sender_info}
       //token() { return this.$store.state.firebase_token},
   },
   created () {
@@ -90,11 +93,61 @@ export default {
             time: + new Date(),
             userName: "야미구 매니저 " + this.nickname
         });
-        // let toUser1 = firebase.database().ref('user/'+ this.user1Info.uid +'/receivedMessages').push();
-        // let toUser2 = firebase.database().ref('user/'+ this.user2Info.uid +'/receivedMessages').push();
-        // toUser1.set({
-        //   id = newData.key,
-        // })
+        let toUser1 = firebase.database().ref('user/'+ this.user1Info.uid +'/receivedMessages/'+this.roomid).child(newData.key);
+        let toUser2 = firebase.database().ref('user/'+ this.user2Info.uid +'/receivedMessages/'+this.roomid).child(newData.key);
+        toUser1.set({
+           id: newData.key,
+           isUnread: true
+        });
+        toUser2.set({
+           id: newData.key,
+           isUnread: true
+        });
+        var date = new Date(this.roominfo.meeting_info.date);
+        this.$axios.$post('fcm/send_push/', {
+          'receiverId': this.user1Info.uid,
+          'data': {
+            'title': '야미구 매니저 ' + this.nickname,
+            'content': this.data.message,
+            'clickAction': '.ChattingActivity',
+            'intentArgs': {
+              'partner_age': this.user2Info.age,
+              'partner_belong': this.user2Info.belong,
+              'partner_department': this.user2Info.department,
+              'partner_nickname': this.user2Info.nickname,
+              'partner_uid': this.user2Info.uid,
+              'date': (date.getMonth() + 1) + "월 " + date.getDate() + "일",
+              'type': this.roominfo.meeting_info.type.split(' ')[0],
+              'meeting_id': this.roominfo.receiver_info.id,
+              'matching_id': this.roominfo.id,
+              'manager_name': this.nickname,
+              'manager_uid': this.$store.state.userInfo.uid,
+              'accepted_at': this.roominfo.meeting_info.accepted_at
+            }             
+          }, 
+        });
+        this.$axios.$post('fcm/send_push/', {
+          'receiverId': this.user2Info.uid,
+          'data': {
+            'title': '야미구 매니저 ' + this.nickname,
+            'content': this.data.message,
+            'clickAction': '.ChattingActivity',
+            'intentArgs': {
+              'partner_age': this.user1Info.age,
+              'partner_belong': this.user1Info.belong,
+              'partner_department': this.user1Info.department,
+              'partner_nickname': this.user1Info.nickname,
+              'partner_uid': this.user1Info.uid,
+              'date': (date.getMonth() + 1) + "월 " + date.getDate() + "일",
+              'type': this.roominfo.meeting_info.type.split(' ')[0],
+              'meeting_id': this.roominfo.sender_info.id,
+              'matching_id': this.roominfo.id,
+              'manager_name': this.nickname,
+              'manager_uid': this.$store.state.userInfo.uid,
+              'accepted_at': this.roominfo.meeting_info.accepted_at
+            }             
+          }, 
+        });
         this.data.message = '';
     },
   }
